@@ -37,7 +37,7 @@ body {
     color: var(--field-symbol-win-color);
     /* text-decoration: line-through; */
 }
-
+/*bajo jajo */
 .pole:not(:disabled):hover {
     background-color: var(--field-color-highlighted);
 }
