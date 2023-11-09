@@ -1,0 +1,1 @@
+prestart_game();

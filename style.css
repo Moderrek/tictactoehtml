@@ -1,0 +1,65 @@
+:root {
+    --background: #2A363B;
+    --field-color: #FECEA8;
+    --field-color-highlighted: #ffd8b8;
+    --field-symbol-win-color: #99B898;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    background-color: var(--background);
+    font-size: 5rem;
+    color: #FEFEFE;
+}
+
+.pole{
+    width: 16rem;
+    height: 16rem;
+    background-color: var(--field-color);
+    border: 3px rgb(247, 182, 129) dashed;
+    position: relative;
+    float: left;
+    border-radius: 1.5rem;
+    margin: 0.25rem;
+    color: rgb(51, 51, 51);
+    font-weight: 900;
+    font-size: 12rem;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.win {
+    color: var(--field-symbol-win-color);
+    /* text-decoration: line-through; */
+}
+
+.pole:not(:disabled):hover {
+    background-color: var(--field-color-highlighted);
+}
+
+#plansza{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#guziki{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#guziki>button{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    
+}
+
+.hidden {
+    display: none;
+}
