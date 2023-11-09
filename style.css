@@ -13,7 +13,7 @@ body {
     color: #FEFEFE;
 }
 
-.pole{ 
+.pole{
     width: 11.75rem;
     height: 11.75rem;
 
@@ -26,14 +26,14 @@ body {
     justify-content:center;
     border: none;
 
- 
+
     color: rgb(51, 51, 51);
     font-weight: 900;
     font-size: 9rem;
     font-family: 'Pacifico', cursive;
 
-   
-    
+
+
     background:var(--field-color);
     display: flex;
     flex-wrap: wrap;
@@ -47,9 +47,11 @@ body {
     background-color: var(--field-color);
     border: 3px rgb(247, 182, 129) dashed;*/
 }
+
 .pole:not(:disabled):hover {
     background-color: var(--field-color-highlighted);
 }
+
 #plansza{
     width: 850px;
     color:#fff;
@@ -58,17 +60,16 @@ body {
 }
 
 #guziki{
-float: left;
-
+    float: left;
 }
 
-#guziki>button{
+#guziki > button{
     height: 200px;
     width: 200px;
     margin: 20px 0px 0px 50px;
     border-radius: 100%;
 
-    border: 25px #708090 solid;
+    border: 1rem #708090 solid;
     font-size: 5rem;
     color: #9a0707;
     top: 400px;
@@ -83,7 +84,7 @@ float: left;
 
 
 #wynik{
-float: left;
+    float: left;
 }
 .win {
     color: var(--field-symbol-win-color);
@@ -91,25 +92,32 @@ float: left;
 }
 
 .hidden {
+    /* none */
+}
+
+/*
+.hidden ma panel, który ma w sobie przyciski
+wiec wszystkie .guziki robisz czerwone w wyłączonym panelu
+ */
+.hidden > .guziki {
     transition: 1s;
-    background-color: #9a0707;
-} 
-  
-  #plansza>button:nth-child(even) {
+    background-color: #ad1f1f;
+}
+
+#plansza>button:nth-child(even) {
     transform:rotate(4deg);
     position:relative;
     top:5px;
-   /*background-color:#cfc;*/
-  }
-  #plansza>button:nth-child(2n) {
+    /*background-color:#cfc;*/
+}
+#plansza>button:nth-child(2n) {
     transform:rotate(-3deg);
     position:relative;
     top:-5px;
     /*background-color:#ccf;*/
-  }
-  #plansza>button:nth-child(5n) {
+}
+#plansza>button:nth-child(5n) {
     transform:rotate(5deg);
     position:relative;
     top:-10px;
-  }
-  
+}

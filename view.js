@@ -1,6 +1,6 @@
 const fields = document.querySelectorAll(".pole");
 const state = document.querySelector("#wynik");
-const start_menu = document.querySelector(".guziki");
+const start_menu = document.querySelector("#guziki");
 const btn_choose_x = document.querySelector('#guzik1');
 const btn_choose_o = document.querySelector('#guzik2');
 
