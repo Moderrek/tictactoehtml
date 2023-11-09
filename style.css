@@ -1,7 +1,7 @@
 :root {
     --background: #2A363B;
-    --field-color: #FECEA8;
-    --field-color-highlighted: #ffd8b8;
+    --field-color:	#eff08e /* #FECEA8*/;
+    --field-color-highlighted:#bebf71/* #ffd8b8*/;
     --field-symbol-win-color: #99B898;
 }
 
@@ -13,53 +13,103 @@ body {
     color: #FEFEFE;
 }
 
-.pole{
-    width: 16rem;
-    height: 16rem;
-    background-color: var(--field-color);
-    border: 3px rgb(247, 182, 129) dashed;
+.pole{ 
+    width: 11.75rem;
+    height: 11.75rem;
+
+    margin: 20px;
+    padding: 0px;
+
     position: relative;
     float: left;
-    border-radius: 1.5rem;
-    margin: 0.25rem;
+    text-align: center;
+    justify-content:center;
+    border: none;
+
+ 
     color: rgb(51, 51, 51);
     font-weight: 900;
-    font-size: 12rem;
+    font-size: 9rem;
     font-family: 'Pacifico', cursive;
-    text-align: center;
+
+   
+    
+    background:var(--field-color);
+    display: flex;
+    flex-wrap: wrap;
+
+
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    /*border-radius: 1.5rem;
+    background-color: var(--field-color);
+    border: 3px rgb(247, 182, 129) dashed;*/
+}
+.pole:not(:disabled):hover {
+    background-color: var(--field-color-highlighted);
+}
+#plansza{
+    width: 850px;
+    color:#fff;
+    float: right;
+    margin-right: 0px;
 }
 
+#guziki{
+float: left;
+
+}
+
+#guziki>button{
+    height: 200px;
+    width: 200px;
+    margin: 20px 0px 0px 50px;
+    border-radius: 100%;
+
+    border: 25px #708090 solid;
+    font-size: 5rem;
+    color: #9a0707;
+    top: 400px;
+    position: absolute;
+}
+#guzik1{
+    left: 290px;
+}
+#guzik2{
+    left: 30px;
+}
+
+
+#wynik{
+float: left;
+}
 .win {
     color: var(--field-symbol-win-color);
     /* text-decoration: line-through; */
 }
-/*bajo jajo */
-.pole:not(:disabled):hover {
-    background-color: var(--field-color-highlighted);
-}
-
-#plansza{
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#guziki{
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#guziki>button{
-    height: 60px;
-    width: 60px;
-    border-radius: 100%;
-    
-}
 
 .hidden {
-    display: none;
-}
+    transition: 1s;
+    background-color: #9a0707;
+} 
+  
+  #plansza>button:nth-child(even) {
+    transform:rotate(4deg);
+    position:relative;
+    top:5px;
+   /*background-color:#cfc;*/
+  }
+  #plansza>button:nth-child(2n) {
+    transform:rotate(-3deg);
+    position:relative;
+    top:-5px;
+    /*background-color:#ccf;*/
+  }
+  #plansza>button:nth-child(5n) {
+    transform:rotate(5deg);
+    position:relative;
+    top:-10px;
+  }
+  
