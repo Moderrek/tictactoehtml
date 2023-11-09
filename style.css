@@ -46,6 +46,11 @@ body {
     /*border-radius: 1.5rem;
     background-color: var(--field-color);
     border: 3px rgb(247, 182, 129) dashed;*/
+
+    background-color: #eff08e;
+    background-size: 20px 20px;
+    background-image:  repeating-linear-gradient(0deg, #2A363B, #2A363B 1px, #eff08e 1px, #eff08e);
+    /* https://www.magicpattern.design/tools/css-backgrounds */
 }
 
 .pole:not(:disabled):hover {
@@ -64,16 +69,26 @@ body {
 }
 
 #guziki > button{
+    transition: 1s;
+    --background-guzik: #d73636;
+    background-color: var(--background-guzik);
     height: 200px;
     width: 200px;
     margin: 20px 0px 0px 50px;
     border-radius: 100%;
-
-    border: 1rem #708090 solid;
+    border: 0.5rem #708090 solid;
     font-size: 5rem;
-    color: #9a0707;
+    color: #310202;
     top: 400px;
     position: absolute;
+    box-shadow: inset -10px -10px 0px 0px #af2a2a;
+    font-weight: 900;
+    opacity: 0.8;
+    --highlight-color: #e04040;
+    background-image:  linear-gradient(135deg, var(--highlight-color) 25%, transparent 25%), linear-gradient(225deg, var(--highlight-color) 25%, transparent 25%), linear-gradient(45deg, var(--highlight-color) 25%, transparent 25%), linear-gradient(315deg, var(--highlight-color) 25%, var(--background-guzik) 25%);
+    background-position:  10px 0, 10px 0, 0 0, 0 0;
+    background-size: 10px 10px;
+    background-repeat: repeat;
 }
 
 #guzik1{
@@ -102,8 +117,9 @@ body {
 wiec wszystkie .guziki robisz czerwone w wyłączonym panelu
  */
 .hidden > .guziki {
-    transition: 1s;
-    background-color: #ad1f1f;
+    transition: 0.25s;
+    transition-timing-function: ease;
+    box-shadow: inset -4px -4px 0px 0px #af2a2a !important;
 }
 
 #plansza>button:nth-child(even) {

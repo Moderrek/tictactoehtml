@@ -57,8 +57,8 @@ const update_board_view = () => {
     }
     console.log(winnable_pos);
     fields.forEach((field, index) => {
-        field.innerHTML = board[index];
-        field.disabled = is_occupied(index);
+        field.innerHTML = main_board[index];
+        field.disabled = is_occupied(main_board, index);
         if (winnable_pos.includes(index)) {
             field.classList.add("win");
         } else {
@@ -71,7 +71,7 @@ const prestart_game = () => {
     // end_game();
     game_state = "Wybierz gracza:"
     update_game_state_view();
-    clear_board(board);
+    clear_board(main_board);
     update_board_view();
     show_start();
 }
