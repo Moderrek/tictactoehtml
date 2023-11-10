@@ -83,8 +83,9 @@ class HardBot extends Bot {
           virtual_array2[second] = symbol;
           possible_wins = find_wins(virtual_array2);
           if (possible_wins.length > 0) {
-            for (let w = 0; w < possible_wins.length; ++w) {
-              let possible_win = possible_wins[w];
+            let win;
+            for (let possible_win of possible_wins) {
+              win = possible_win;
               if (possible_win.winner === this.symbol) {
                 console.log("CAN WIN!");
                 set_field(second, this.symbol);
@@ -92,23 +93,26 @@ class HardBot extends Bot {
               }
             }
             console.log(`2 COMPLEX`);
-            set_field(second, this.symbol);
+            while (true) {
+              let random = randomInt(0, 2);
+              if (is_occupied(this.org_board, win.pos[random])) continue;
+              set_field(win.pos[random], this.symbol);
+              break;
+            }
             return;
           }
         }
       }
     }
-    // for (let i = 0; i < CAPACITY; i += 1) {
-    //   this.board = Array.from(this.org_board);
-    //   if (this.board[i] !== " ") continue;
-    //   console.log("Mogę wykonać ruch na " + i);
-    //   this.board[i] = this.symbol;
-    //   let predicted_win = find_win(this.board);
-    //   if (predicted_win.winner == null) continue;
-    //   console.log("Wygra ktoś na polu " + i + " stawiam..");
-    //   set_field(i, this.symbol);
-    //   return;
-    // }
+    // losowanie
+    while (true) {
+      if (!is_game_running) break;
+      let losowe_pole = randomInt(0, CAPACITY - 1);
+      if (is_filled_up(main_board)) throw "Wszystko jest zajęte";
+      if (is_occupied(main_board, losowe_pole)) continue;
+      set_field(losowe_pole, this.symbol);
+      break;
+    }
   }
 }
 
@@ -209,9 +213,15 @@ const on_field_click = (index) => {
   set_field(index, turn);
   if (!is_game_running) return;
   switch_turn();
+  perform_bot();
+}
+
+const perform_bot = () => {
   if (bot !== null && turn === bot.symbol) {
     bot.perform(main_board);
     switch_turn();
+  } else {
+    console.log("Bot perform cancelled");
   }
 }
 

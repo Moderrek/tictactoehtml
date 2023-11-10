@@ -27,10 +27,17 @@ btn_choose_o.addEventListener('click', () => {
 });
 
 const after_choose = (player) => {
+    console.log(`Player: ${player}`)
     set_player(player);
-    bot = new HardBot(next_turn());
+    let bot_symbol = next_turn();
+    bot = new HardBot(bot_symbol);
+    console.log(`Bot: ${bot_symbol}`);
+    switch_turn();
+    console.log(`${turn} starts`);
     hide_start();
     start_game();
+    perform_bot();
+    update_board_view();
     update_game_state_view();
 }
 
