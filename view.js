@@ -28,6 +28,7 @@ btn_choose_o.addEventListener('click', () => {
 
 const after_choose = (player) => {
     set_player(player);
+    bot = new HardBot(next_turn());
     hide_start();
     start_game();
     update_game_state_view();

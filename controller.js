@@ -12,6 +12,7 @@ let main_board = [EMPTY, EMPTY, EMPTY,
   EMPTY, EMPTY, EMPTY];
 let game_state = "";
 let win = null;
+let bot = null;
 
 const randomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -65,25 +66,49 @@ class HardBot extends Bot {
     if (turn !== this.symbol) return;
     if (is_filled_up(main_board)) throw "Wszystko jest zajęte";
     // przewidywanie
-    for (let i = 0; i < SYMBOLS.length; ++i) {
-      let symbol = SYMBOLS[i];
+    for (let symbol of SYMBOLS) {
       for (let first = 0; first < CAPACITY; ++first) {
+        if (this.org_board[first] !== " ") continue;
+        let virtual_array = Array.from(this.org_board);
+        virtual_array[first] = symbol;
+        let possible_wins = find_wins(virtual_array);
+        if (possible_wins.length > 0) {
+          console.log("1 COMPLEX");
+          set_field(first, this.symbol);
+          return;
+        }
         for (let second = 0; second < CAPACITY; ++second) {
-
+          let virtual_array2 = Array.from(virtual_array);
+          if (virtual_array2[second] !== " ") continue;
+          virtual_array2[second] = symbol;
+          possible_wins = find_wins(virtual_array2);
+          if (possible_wins.length > 0) {
+            for (let w = 0; w < possible_wins.length; ++w) {
+              let possible_win = possible_wins[w];
+              if (possible_win.winner === this.symbol) {
+                console.log("CAN WIN!");
+                set_field(second, this.symbol);
+                return;
+              }
+            }
+            console.log(`2 COMPLEX`);
+            set_field(second, this.symbol);
+            return;
+          }
         }
       }
     }
-    for (let i = 0; i < CAPACITY; i += 1) {
-      this.board = Array.from(this.org_board);
-      if (this.board[i] !== " ") continue;
-      console.log("Mogę wykonać ruch na " + i);
-      this.board[i] = this.symbol;
-      let predicted_win = find_win(this.board);
-      if (predicted_win.winner == null) continue;
-      console.log("Wygra ktoś na polu " + i + " stawiam..");
-      set_field(i, this.symbol);
-      return;
-    }
+    // for (let i = 0; i < CAPACITY; i += 1) {
+    //   this.board = Array.from(this.org_board);
+    //   if (this.board[i] !== " ") continue;
+    //   console.log("Mogę wykonać ruch na " + i);
+    //   this.board[i] = this.symbol;
+    //   let predicted_win = find_win(this.board);
+    //   if (predicted_win.winner == null) continue;
+    //   console.log("Wygra ktoś na polu " + i + " stawiam..");
+    //   set_field(i, this.symbol);
+    //   return;
+    // }
   }
 }
 
@@ -136,7 +161,8 @@ const find_wins = (board = main_board, except = [EMPTY]) => {
 }
 
 const check_end = () => {
-  // win = find_win(main_board);
+  let wins = find_wins(main_board);
+  if (wins.length > 0) win = find_wins(main_board)[0]; else win = null;
   if (win != null && win.winner != null) {
     game_state = `Wygrał ${win.winner}!`;
     end_game();
@@ -183,6 +209,10 @@ const on_field_click = (index) => {
   set_field(index, turn);
   if (!is_game_running) return;
   switch_turn();
+  if (bot !== null && turn === bot.symbol) {
+    bot.perform(main_board);
+    switch_turn();
+  }
 }
 
 const start_game = () => {
@@ -192,3 +222,14 @@ const start_game = () => {
 const end_game = () => {
   is_game_running = false;
 }
+
+// main_board[0] = "O";
+// main_board[1] = "X";
+// main_board[3] = "O";
+// console.log(bot);
+// console.log(main_board)
+// turn = "X";
+// bot.perform(main_board);
+// turn = "X";
+// bot.perform(main_board);
+// console.log(main_board)
