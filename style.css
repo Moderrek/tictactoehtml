@@ -6,11 +6,32 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
 
 body {
     background-color: var(--background);
     font-size: 5rem;
     color: #FEFEFE;
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+main > div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .pole{
@@ -80,7 +101,6 @@ body {
     font-size: 5rem;
     color: #310202;
     top: 400px;
-    position: absolute;
     box-shadow: inset -10px -10px 0px 0px #af2a2a;
     font-weight: 900;
     opacity: 0.8;
