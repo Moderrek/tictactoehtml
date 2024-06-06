@@ -1,17 +1,26 @@
 # Tic Tac Toe
+
 Web game created with pure **HTML, CSS and JavaScript**.  
 You can play it [here](https://moderrek.github.io/tictactoehtml/).  
 ![View game](https://i.postimg.cc/Pr7Zs6Fs/image.png)
+
 ## Features
- * Play with intelligent bot
- * Choose player
- * Automatic starting new game
+
+- Play with intelligent bot
+- Choose player
+- Automatic starting new game
+
 ## Contributions
- * [Moderrek](https://github.com/Moderrek)
- * [ZnanyJakoBartus](https://github.com/ZnanyJakoBartus)
+
+- [Moderrek](https://github.com/Moderrek)
+- [ZnanyJakoBartus](https://github.com/ZnanyJakoBartus)
+
 ## License
-   MIT
+
+MIT
+
 ## For Developers
+
 1. First clone repository
    ```bash
    git clone https://github.com/Moderrek/tictactoehtml.git
@@ -20,4 +29,4 @@ You can play it [here](https://moderrek.github.io/tictactoehtml/).
    ```bash
    cd tictactoehtml
    ```
-After completed work commit and pull to repository
+   After completed work commit and pull to repository

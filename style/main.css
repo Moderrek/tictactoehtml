@@ -1,148 +1,160 @@
 :root {
-    --background: #272727;
-    --field-color:	#eff08e;
-    --field-color-highlighted:#bebf71;
-    --field-symbol-win-color: #7dd47a;
+  --background: #272727;
+  --field-color: #eff08e;
+  --field-color-highlighted: #bebf71;
+  --field-symbol-win-color: #7dd47a;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap");
 
 body {
-    background-color: var(--background);
-    font-size: 5rem;
-    color: #FEFEFE;
-    font-family: "Maven Pro", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    display: flex;
-    justify-content: center;
+  background-color: var(--background);
+  font-size: 5rem;
+  color: #fefefe;
+  font-family: "Maven Pro", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
 }
 
 main {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 main > div {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .field {
-    width: 11.75rem;
-    height: 11.75rem;
+  width: 11.75rem;
+  height: 11.75rem;
 
-    margin: 20px;
-    padding: 0px;
+  margin: 20px;
+  padding: 0px;
 
-    position: relative;
-    float: left;
-    text-align: center;
-    justify-content:center;
-    border: none;
+  position: relative;
+  float: left;
+  text-align: center;
+  justify-content: center;
+  border: none;
 
+  color: rgb(51, 51, 51);
+  font-weight: 900;
+  font-size: 9rem;
+  font-family: "Pacifico", cursive;
 
-    color: rgb(51, 51, 51);
-    font-weight: 900;
-    font-size: 9rem;
-    font-family: 'Pacifico', cursive;
+  background: var(--field-color);
+  display: flex;
+  flex-wrap: wrap;
 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-
-    background:var(--field-color);
-    display: flex;
-    flex-wrap: wrap;
-
-
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    background-color: #eff08e;
-    background-size: 20px 20px;
-    background-image:  repeating-linear-gradient(0deg, #2A363B, #2A363B 1px, #eff08e 1px, #eff08e);
-    /* https://www.magicpattern.design/tools/css-backgrounds */
+  background-color: #eff08e;
+  background-size: 20px 20px;
+  background-image: repeating-linear-gradient(
+    0deg,
+    #2a363b,
+    #2a363b 1px,
+    #eff08e 1px,
+    #eff08e
+  );
+  /* https://www.magicpattern.design/tools/css-backgrounds */
 }
 
 .field:not(:disabled):hover {
-    background-color: var(--field-color-highlighted);
+  background-color: var(--field-color-highlighted);
 }
 
 #board {
-    width: 850px;
-    color:#fff;
-    float: right;
-    margin-right: 0px;
+  width: 850px;
+  color: #fff;
+  float: right;
+  margin-right: 0px;
 }
 
 #buttons {
-    float: left;
+  float: left;
 }
 
-#buttons > button{
-    transition: 1s;
-    --background-guzik: #d73636;
-    background-color: var(--background-guzik);
-    height: 200px;
-    width: 200px;
-    margin: 20px 0px 0px 50px;
-    border-radius: 100%;
-    border: 0.5rem #708090 solid;
-    font-size: 5rem;
-    color: #310202;
-    top: 400px;
-    box-shadow: inset -10px -10px 0px 0px #af2a2a;
-    font-weight: 900;
-    opacity: 0.8;
-    --highlight-color: #e04040;
-    background-image:  linear-gradient(135deg, var(--highlight-color) 25%, transparent 25%), linear-gradient(225deg, var(--highlight-color) 25%, transparent 25%), linear-gradient(45deg, var(--highlight-color) 25%, transparent 25%), linear-gradient(315deg, var(--highlight-color) 25%, var(--background-guzik) 25%);
-    background-position:  10px 0, 10px 0, 0 0, 0 0;
-    background-size: 10px 10px;
-    background-repeat: repeat;
+#buttons > button {
+  transition: 1s;
+  --background-guzik: #d73636;
+  background-color: var(--background-guzik);
+  height: 200px;
+  width: 200px;
+  margin: 20px 0px 0px 50px;
+  border-radius: 100%;
+  border: 0.5rem #708090 solid;
+  font-size: 5rem;
+  color: #310202;
+  top: 400px;
+  box-shadow: inset -10px -10px 0px 0px #af2a2a;
+  font-weight: 900;
+  opacity: 0.8;
+  --highlight-color: #e04040;
+  background-image: linear-gradient(
+      135deg,
+      var(--highlight-color) 25%,
+      transparent 25%
+    ),
+    linear-gradient(225deg, var(--highlight-color) 25%, transparent 25%),
+    linear-gradient(45deg, var(--highlight-color) 25%, transparent 25%),
+    linear-gradient(
+      315deg,
+      var(--highlight-color) 25%,
+      var(--background-guzik) 25%
+    );
+  background-position: 10px 0, 10px 0, 0 0, 0 0;
+  background-size: 10px 10px;
+  background-repeat: repeat;
 }
 
-#guzik1{
-    left: 290px;
+#guzik1 {
+  left: 290px;
 }
 
-#guzik2{
-    left: 30px;
+#guzik2 {
+  left: 30px;
 }
-
 
 #state {
-    float: left;
+  float: left;
 }
 
 .win {
-    color: var(--field-symbol-win-color);
+  color: var(--field-symbol-win-color);
 }
 
 .hidden > .buttons {
-    transition: 0.25s;
-    transition-timing-function: ease;
-    box-shadow: inset -4px -4px 0px 0px #af2a2a !important;
+  transition: 0.25s;
+  transition-timing-function: ease;
+  box-shadow: inset -4px -4px 0px 0px #af2a2a !important;
 }
 
-#board>button:nth-child(even) {
-    transform:rotate(4deg);
-    position:relative;
-    top:5px;
+#board > button:nth-child(even) {
+  transform: rotate(4deg);
+  position: relative;
+  top: 5px;
 }
-#board>button:nth-child(2n) {
-    transform:rotate(-3deg);
-    position:relative;
-    top:-5px;
+#board > button:nth-child(2n) {
+  transform: rotate(-3deg);
+  position: relative;
+  top: -5px;
 }
-#plansza>button:nth-child(5n) {
-    transform:rotate(5deg);
-    position:relative;
-    top:-10px;
+#plansza > button:nth-child(5n) {
+  transform: rotate(5deg);
+  position: relative;
+  top: -10px;
 }

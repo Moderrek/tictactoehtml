@@ -1,26 +1,34 @@
 const SIZE = 3;
 const CAPACITY = 9;
 const EMPTY = " ";
-const X = 'X';
-const O = 'O';
+const X = "X";
+const O = "O";
 const SYMBOLS = [X, O];
 let turn = null;
 let player = null;
 let is_game_running = false;
-let main_board = [EMPTY, EMPTY, EMPTY,
-  EMPTY, EMPTY, EMPTY,
-  EMPTY, EMPTY, EMPTY];
+let main_board = [
+  EMPTY,
+  EMPTY,
+  EMPTY,
+  EMPTY,
+  EMPTY,
+  EMPTY,
+  EMPTY,
+  EMPTY,
+  EMPTY,
+];
 let game_state = "";
 let win = null;
 let bot = null;
 
 const randomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 const next_turn = () => {
   return turn === X ? O : X;
-}
+};
 
 class Bot {
   perform(_board) {
@@ -61,7 +69,7 @@ class HardBot extends Bot {
   }
 
   perform(_board) {
-    this.org_board = Array.from(_board)
+    this.org_board = Array.from(_board);
     // Cannot perform if it's not bot's turn
     if (turn !== this.symbol) return;
     if (is_filled_up(main_board)) throw "Every field is occupied!";
@@ -118,7 +126,7 @@ class HardBot extends Bot {
 
 const clear_board = (board = main_board) => {
   for (let i = 0; i < CAPACITY; i += 1) board[i] = EMPTY;
-}
+};
 
 const is_filled_up = (board = main_board) => {
   for (let i = 0; i < CAPACITY; i += 1) {
@@ -127,7 +135,7 @@ const is_filled_up = (board = main_board) => {
     }
   }
   return true;
-}
+};
 
 const find_wins = (board = main_board, except = [EMPTY]) => {
   // Rows
@@ -151,22 +159,33 @@ const find_wins = (board = main_board, except = [EMPTY]) => {
     if (except.includes(first)) break;
     let indexes = [col];
     for (let row = 1; row < SIZE; row += 1) {
-      if (board[col + (row * 3)] !== first) break;
-      indexes.push(col + (row * 3))
+      if (board[col + row * 3] !== first) break;
+      indexes.push(col + row * 3);
     }
     if (indexes.length === 3) {
       result.push({ winner: first, pos: indexes });
     }
   }
   // Diagonals
-  if (!except.includes(board[4]) && board[0] === board[4] && board[4] === board[8]) result.push({ winner: board[4], pos: [0, 4, 8] });
-  if (!except.includes(board[4]) && board[2] === board[4] && board[4] === board[6]) result.push({ winner: board[4], pos: [2, 4, 6] });
+  if (
+    !except.includes(board[4]) &&
+    board[0] === board[4] &&
+    board[4] === board[8]
+  )
+    result.push({ winner: board[4], pos: [0, 4, 8] });
+  if (
+    !except.includes(board[4]) &&
+    board[2] === board[4] &&
+    board[4] === board[6]
+  )
+    result.push({ winner: board[4], pos: [2, 4, 6] });
   return result;
-}
+};
 
 const check_end = () => {
   let wins = find_wins(main_board);
-  if (wins.length > 0) win = find_wins(main_board)[0]; else win = null;
+  if (wins.length > 0) win = find_wins(main_board)[0];
+  else win = null;
   if (win != null && win.winner != null) {
     game_state = `The ${win.winner} won!`;
     end_game();
@@ -177,35 +196,35 @@ const check_end = () => {
     end_game();
     return;
   }
-}
+};
 
 const set_field = (index, val) => {
   main_board[index] = val;
   check_end();
-}
+};
 
 const set_player = (val) => {
   player = val;
   turn = player;
   update_turn_state();
-}
+};
 
 const update_turn_state = () => {
   game_state = `Turn: ${turn}`;
-}
+};
 
 const switch_turn = () => {
-  turn = (turn === 'X') ? 'O' : 'X';
+  turn = turn === "X" ? "O" : "X";
   update_turn_state();
-}
+};
 
 const is_field_empty = (arr, index = 0) => {
   return arr[index] === EMPTY;
-}
+};
 
 const is_occupied = (arr, index = 0) => {
   return !is_field_empty(arr, index);
-}
+};
 
 const on_field_click = (index) => {
   if (!is_game_running) return;
@@ -214,7 +233,7 @@ const on_field_click = (index) => {
   if (!is_game_running) return;
   switch_turn();
   perform_bot();
-}
+};
 
 const perform_bot = () => {
   if (bot !== null && turn === bot.symbol) {
@@ -223,12 +242,12 @@ const perform_bot = () => {
   } else {
     console.log("Bot perform cancelled");
   }
-}
+};
 
 const start_game = () => {
   is_game_running = true;
-}
+};
 
 const end_game = () => {
   is_game_running = false;
-}
+};
