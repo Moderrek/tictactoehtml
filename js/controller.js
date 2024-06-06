@@ -24,7 +24,7 @@ const next_turn = () => {
 
 class Bot {
   perform(_board) {
-    throw "Bot nie posiada tej funkcji!";
+    throw "Not implemented!";
   }
 }
 
@@ -37,10 +37,10 @@ class EasyBot extends Bot {
     if (turn !== this.symbol) return;
     while (true) {
       if (!is_game_running) break;
-      let losowe_pole = randomInt(0, CAPACITY - 1);
-      if (is_filled_up(main_board)) throw "Wszystko jest zajęte";
-      if (is_occupied(main_board, losowe_pole)) continue;
-      set_field(losowe_pole, this.symbol);
+      let random_field = randomInt(0, CAPACITY - 1);
+      if (is_filled_up(main_board)) throw "Every field is occupied!";
+      if (is_occupied(main_board, random_field)) continue;
+      set_field(random_field, this.symbol);
       switch_turn();
       update_board_view();
       update_turn_state();
@@ -62,10 +62,10 @@ class HardBot extends Bot {
 
   perform(_board) {
     this.org_board = Array.from(_board)
-    // nie wykonuje ruchu, jeżeli nie jego kolej
+    // Cannot perform if it's not bot's turn
     if (turn !== this.symbol) return;
-    if (is_filled_up(main_board)) throw "Wszystko jest zajęte";
-    // przewidywanie
+    if (is_filled_up(main_board)) throw "Every field is occupied!";
+    // Try to win
     for (let symbol of SYMBOLS) {
       for (let first = 0; first < CAPACITY; ++first) {
         if (this.org_board[first] !== " ") continue;
@@ -104,13 +104,13 @@ class HardBot extends Bot {
         }
       }
     }
-    // losowanie
+    // Random move
     while (true) {
       if (!is_game_running) break;
-      let losowe_pole = randomInt(0, CAPACITY - 1);
-      if (is_filled_up(main_board)) throw "Wszystko jest zajęte";
-      if (is_occupied(main_board, losowe_pole)) continue;
-      set_field(losowe_pole, this.symbol);
+      let random_field = randomInt(0, CAPACITY - 1);
+      if (is_filled_up(main_board)) throw "Every field is occupied!";
+      if (is_occupied(main_board, random_field)) continue;
+      set_field(random_field, this.symbol);
       break;
     }
   }
@@ -130,7 +130,7 @@ const is_filled_up = (board = main_board) => {
 }
 
 const find_wins = (board = main_board, except = [EMPTY]) => {
-  // wiersze
+  // Rows
   let result = [];
   for (let row = 0; row < SIZE; row += 1) {
     let offset = row * 3;
@@ -145,7 +145,7 @@ const find_wins = (board = main_board, except = [EMPTY]) => {
       result.push({ winner: first, pos: indexes });
     }
   }
-  // kolumny
+  // Columns
   for (let col = 0; col < SIZE; col += 1) {
     let first = board[col];
     if (except.includes(first)) break;
@@ -158,7 +158,7 @@ const find_wins = (board = main_board, except = [EMPTY]) => {
       result.push({ winner: first, pos: indexes });
     }
   }
-  // na ukos
+  // Diagonals
   if (!except.includes(board[4]) && board[0] === board[4] && board[4] === board[8]) result.push({ winner: board[4], pos: [0, 4, 8] });
   if (!except.includes(board[4]) && board[2] === board[4] && board[4] === board[6]) result.push({ winner: board[4], pos: [2, 4, 6] });
   return result;
@@ -168,12 +168,12 @@ const check_end = () => {
   let wins = find_wins(main_board);
   if (wins.length > 0) win = find_wins(main_board)[0]; else win = null;
   if (win != null && win.winner != null) {
-    game_state = `Wygrał ${win.winner}!`;
+    game_state = `The ${win.winner} won!`;
     end_game();
     return;
   }
   if (is_filled_up(main_board)) {
-    game_state = "REMIS";
+    game_state = "DRAW!";
     end_game();
     return;
   }
@@ -191,7 +191,7 @@ const set_player = (val) => {
 }
 
 const update_turn_state = () => {
-  game_state = `Tura: ${turn}`;
+  game_state = `Turn: ${turn}`;
 }
 
 const switch_turn = () => {
@@ -232,14 +232,3 @@ const start_game = () => {
 const end_game = () => {
   is_game_running = false;
 }
-
-// main_board[0] = "O";
-// main_board[1] = "X";
-// main_board[3] = "O";
-// console.log(bot);
-// console.log(main_board)
-// turn = "X";
-// bot.perform(main_board);
-// turn = "X";
-// bot.perform(main_board);
-// console.log(main_board)
