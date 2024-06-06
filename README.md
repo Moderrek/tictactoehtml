@@ -4,6 +4,10 @@ Web mini game called [Tic Tac Toe](https://en.wikipedia.org/wiki/Tic-tac-toe) cr
 
 You can play it [here](https://moderrek.github.io/tictactoehtml/).  
 
+## 📷 Screenshots
+
+![Example win](https://github.com/Moderrek/tictactoehtml/assets/16192262/ab2d3c3c-599c-4597-8412-fca4fdd2ff36)
+
 ## 🕹️ Features
 
 - Play with intelligent bot
